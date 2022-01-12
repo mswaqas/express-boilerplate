@@ -5,6 +5,7 @@ require("express-async-errors")
 const cors = require("cors")
 
 const errorMiddleware = require("./Middleware/ErrorMiddleware")
+const authMiddleware = require("./Middleware/Auth/AuthMiddleware")
 const validators = require("./Middleware/Validators/Index")
 
 const app = express()
@@ -31,8 +32,8 @@ app.listen(port, () => {
 /**
  * Routes..
  */
-//require("./Routes/IndexRoute")(app, authMiddleware, validators)
-require("./Routes/IndexRoute")(app, validators)
+
+require("./Routes/IndexRoute")(app, authMiddleware, validators)
 
 // Error Handler Middleware
 app.use(errorMiddleware)
